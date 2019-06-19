@@ -2,14 +2,11 @@ express=require('express');
 
 const  path=require('path');
 router=express.Router();
+const adminData=require('./admin');
+const product=require('../controllers/products');
 
 
-router.get('/',(req,res,next)=> {
-
-    console.log("in another middleware");
-    res.sendfile('./views/shop.html');
-
-});
+router.get('/',product.products);
 
 
 

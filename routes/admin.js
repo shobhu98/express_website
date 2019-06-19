@@ -1,21 +1,20 @@
 const express=require('express');
 
  const router=express.Router();
-
-router.get('/add-prod',(req,res,next)=> {
-
-    console.log("in the middleware");
-    res.send('<form action="/product" method="post"><input type="text" name="title"><input type="submit"></form>');
+const product=[];
+const  productController=require('../controllers/products');
+router.get('/add-prod',productController.addProduct );
 
 
-});
+router.use('/product',(req,res)=>{
+    product.push({title:req.body.title});
+    //console.log(product);
 
-
-router.use('/product',(req,res,next)=>{
-    console.log(req.body);
     res.redirect('/');
 
 
 
 });
-module.exports=router;
+// module.exports=router
+exports.router=router;
+exports.product=product;
