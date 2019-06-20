@@ -1,10 +1,10 @@
 
-
+const product=[];
 exports.addProduct=(req,res,next)=> {
 
     console.log("in the middleware");
-    // res.send('<form action="/product" method="post"><input type="text" name="title"><input type="submit"></form>');
-    res.sendfile('./views/add_product.html');
+     // res.send('<form action="/product" method="post"><input type="text" name="title"><input type="submit"></form>');
+     res.sendfile('./views/add_product.html');
 
 
 };
@@ -12,7 +12,17 @@ exports.addProduct=(req,res,next)=> {
 exports.products=(req,res,next)=> {
 
     console.log("in another middleware");
-    console.log(adminData.product);
+    // console.log(adminData.product);
     res.sendfile('./views/shop.html');
+
+};
+
+exports.productlist=(req,res)=>{
+    product.push({title:req.body.title});
+     console.log(product);
+
+    res.redirect('/');
+
+
 
 };
